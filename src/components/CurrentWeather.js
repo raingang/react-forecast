@@ -5,7 +5,10 @@ import { connect } from 'react-redux'
 import './css/CurrentWeather.css'
 
 class CurrentWeather extends Component {
-
+    static propTypes = {
+        measurement: PropTypes.string,
+        weather: PropTypes.object
+    }
     render() {
         const { measurement, weather } = this.props
         return (

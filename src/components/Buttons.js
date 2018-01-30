@@ -5,9 +5,8 @@ import { changeMeasurement, getLocation } from '../AC/'
 import './css/Buttons.css'
 
 class Buttons extends Component {
-    constructor(props) {
-        super(props)
-        this.handleMeasClick = this.handleMeasClick.bind(this)
+    static propTypes = {
+        measurement: PropTypes.string,
     }
     render() {
         const { measurement } = this.props

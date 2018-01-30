@@ -5,7 +5,9 @@ import './css/Notification.css'
 import classNames from 'classnames'
 
 class Notification extends Component {
-
+    static propTypes = {
+        notification: PropTypes.arrayOf(PropTypes.bool)
+    }
     render() {
         const { error, local } = this.props.notification
         const notNames = classNames({
@@ -16,8 +18,8 @@ class Notification extends Component {
         })
         return (
             <div className = {notNames} >
-        	{local ? null : 'Click on the  button to share your current location.'}
-        	</div>
+            {local ? null : 'Click on the  button to share your current location.'}
+            </div>
         )
     }
 }
