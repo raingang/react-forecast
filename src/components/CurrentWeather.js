@@ -1,17 +1,35 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
+import { fahrToCels } from '../helpers'
+import { connect } from 'react-redux'
+import './css/CurrentWeather.css'
 
 class CurrentWeather extends Component {
-    
+
     render() {
-    	const {name, sys, weather} = this.props.weather
+        const { measurement, weather } = this.props
         return (
-            <div>
-        	<h2>{name}, {sys.country}</h2>
-        	<span>{weather[0].main}</span>
-        	</div>
+            <div className = 'currentWeather'>
+            {weather ? this.getBody() : 'Loading ...'}
+            </div>
         )
+    }
+
+    getBody = () => {
+        if (this.props.weather) {
+            const { measurement, weather } = this.props
+            const { name, country } = weather.location
+            const { temp_c, condition } = weather.current
+            const temp = measurement == 'fahrenheit' ? (temp_c * 1.8 + 32) : temp_c
+            return (
+                <div>
+                    <span>{name}, {country}</span>
+                    <span>{temp}</span>
+                    <span>{condition.text}</span>
+                </div>
+            )
+        }
     }
 }
 
-export default CurrentWeather
+export default connect((state) => ({ weather: state.weather }))(CurrentWeather)
