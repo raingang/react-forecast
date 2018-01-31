@@ -5,22 +5,25 @@ import classNames from 'classnames'
 
 class Notification extends Component {
     static propTypes = {
-        notification: PropTypes.objectOf(PropTypes.bool)
     }
     render() {
-        const { error, local } = this.props.notification
+        console.log('NOTE UPdate')
+        const {status} = this.props
+        const loading = status.get('loading')
+        const loaded = status.get('loaded')
+        const error = status.get('error')
+        const message = status.get('message')
         const notNames = classNames({
-            'notification': true,
-            'notification-off': local,
+            'notification': !loaded,
+            'notification-success': loaded,
             'notification-error': error
-
         })
         return (
             <div className = {notNames} >
-            {local ? null : 'Click on the  button to share your current location.'}
+            {message}
             </div>
         )
     }
 }
 
-export default connect((state) => ({ notification: state.notification }))(Notification)
+export default connect((state) => ({status: state.status }))(Notification)

@@ -1,3 +1,4 @@
+/*
 .buttons{
   position: absolute;
   left: 0px;
@@ -38,10 +39,11 @@ nav {
   text-transform: uppercase;
 }
 .unitBtn:before {
-  content: '\00b0'; /* Degree symbol */
+  content: '\00b0'; 
   padding: 1px;
 }
-/* locateBtn Pulse Animation */
+
 .locateBtn.pulse {
   animation: pulse 2s infinite;
 }
+*/

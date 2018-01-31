@@ -6,7 +6,8 @@ import ForecastDay from './ForecastDay'
 
 class Forecast extends Component {
     render() {
-        const { loaded } = this.props
+        const { status } = this.props
+        const loaded = status.get('loaded')
         if (loaded) {
         	return this.getBody()
         } else {
@@ -17,7 +18,6 @@ class Forecast extends Component {
     getBody = () => {
         const { forecast } = this.props.weather
         let forecastDayElements = forecast.forecastday.map((day) => {
-            console.log(day)
             return (
                 <li key = {day.date}>
         			<ForecastDay measurement = {this.props.measurement} forecast = {day} />
@@ -32,4 +32,4 @@ class Forecast extends Component {
     }
 }
 
-export default connect((state) => ({ loaded: state.loaded, weather: state.weather, measurement: state.measurement }))(Forecast)
+export default connect((state) => ({ status: state.status, weather: state.weather, measurement: state.measurement }))(Forecast)

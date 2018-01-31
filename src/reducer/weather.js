@@ -1,12 +1,9 @@
-import { LOAD_WEATHER, GET_LOCATION } from '../constants'
+import { LOAD_WEATHER, GET_LOCATION, SUCCESS} from '../constants'
 
 export default (defaultState = null, action) => {
     const { type } = action
     switch (type) {
-        case LOAD_WEATHER:
-            console.log('REDUCER')
-            return action.response
-        case GET_LOCATION:
+        case LOAD_WEATHER + SUCCESS:
             return action.response
     }
 

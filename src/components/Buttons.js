@@ -25,9 +25,11 @@ class Buttons extends Component {
     }
     handleLocationClick = (ev) => {
         ev.preventDefault()
-        const { getLocation } = this.props
-        getLocation()
+        const { getLocation, status } = this.props
+        if (!status.get('location')) {
+            getLocation()
+        }
     }
 }
 
-export default connect((state) => ({ measurement: state.measurement }), { changeMeasurement, getLocation })(Buttons)
+export default connect((state) => ({ measurement: state.measurement, status: state.status }), { changeMeasurement, getLocation })(Buttons)
