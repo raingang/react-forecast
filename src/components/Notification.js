@@ -1,12 +1,11 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
-import './css/Notification.css'
 import classNames from 'classnames'
 
 class Notification extends Component {
     static propTypes = {
-        notification: PropTypes.arrayOf(PropTypes.bool)
+        notification: PropTypes.objectOf(PropTypes.bool)
     }
     render() {
         const { error, local } = this.props.notification

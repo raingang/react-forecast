@@ -3,6 +3,7 @@ import PropTypes from 'prop-types'
 import { fahrToCels } from '../helpers'
 import { connect } from 'react-redux'
 import './css/CurrentWeather.css'
+import {celsToFahr} from '../helpers'
 
 class CurrentWeather extends Component {
     static propTypes = {
@@ -23,7 +24,7 @@ class CurrentWeather extends Component {
             const { measurement, weather } = this.props
             const { name, country } = weather.location
             const { temp_c, condition } = weather.current
-            const temp = measurement == 'fahrenheit' ? (temp_c * 1.8 + 32) : temp_c
+            const temp = celsToFahr(measurement, temp_c)
             return (
                 <div>
                     <span>{name}, {country}</span>
