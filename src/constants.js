@@ -6,3 +6,4 @@ export const GET_LOCATION = 'GET_LOCATION'
 
 export const SUCCESS = '_SUCCESS'
 export const FAIL = '_FAIL'
+export const START = '_START'

@@ -1,0 +1,11 @@
+.statusbar{
+	background-color: #ffedad;
+	font-size: 16px;
+	padding: 14px 0px;
+}
+.statusbar-success{
+	background-color: red;
+}
+.statusbar-close{
+	display: none;
+}

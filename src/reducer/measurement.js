@@ -1,6 +1,6 @@
 import { CHANGE_MEASUREMENT } from '../constants'
 
-export default (measurement = 'fahrenheit', action) => {
+export default (measurement = 'celsius', action) => {
     const { type } = action
 
     switch (type) {

@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import Buttons from './Buttons'
 import CurrentWeather from './CurrentWeather'
 import Forecast from './Forecast'
-import Notification from './Notification'
+import StatusBar from './StatusBar'
 import { curWeather } from '../fixtures'
 import { connect } from 'react-redux'
 import { loadWeather } from '../AC/'
@@ -16,15 +16,20 @@ class App extends Component {
     }
     componentDidUpdate() {
         const { status } = this.props
-        console.log(status.get('location'))
-        this.loadWeather()
+        if ((!status.get('loading') && (!status.get('loaded'))) && (!status.get('error'))) {
+            this.loadWeather()
+        } else {
+            if (!status.get('local') && status.get('location')) {
+                this.loadWeather()
+            }
+        }
     }
     render() {
         console.log('----- App update')
         const { weather, measurement } = this.props
         return (
             <div>
-            <Notification />
+            <StatusBar />
             <Buttons />
             <CurrentWeather measurement = {measurement} />
             <Forecast />
@@ -34,9 +39,7 @@ class App extends Component {
 
     loadWeather = () => {
         const location = this.props.status.get('location')
-        console.log('load weather', location)
         const query = location ? (location.latitude + ',' + location.longitude) : 'Tokyo'
-        console.log(query)
         const callAPI = 'http://api.apixu.com/v1/forecast.json?key=' + API_KEY + '&q=' + query + '&days=6'
         this.props.loadWeather(callAPI)
     }
